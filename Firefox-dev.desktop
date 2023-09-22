@@ -16,6 +16,7 @@ MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rs
 StartupNotify=true
 Actions=new-window;new-private-window;
 Encoding=UTF-8
+StartupWMClass=Firefox Developer Edition
 
 [Desktop Action new-window]
 Name=Open a New Window
