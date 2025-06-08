@@ -7,7 +7,7 @@
 Setting up Firefox Developer Edition in Ubuntu
 
 > NOTE: I am now recommending to install Firefox via the .deb packages for Debian-based distributions
-> The following instructions are from [Support Mozilla](https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions) with the settings v124 & Linux.
+> The following instructions are from [Support Mozilla ¹](https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions) with the settings v124 & Linux.
 
 1. Create a directory to store APT repository keys if it doesn't exist:
    ```bash
@@ -25,17 +25,28 @@ Setting up Firefox Developer Edition in Ubuntu
    ```bash
    gpg -n -q --import --import-options import-show /etc/apt/keyrings/packages.mozilla.org.asc | awk '/pub/{getline; gsub(/^ +| +$/,""); if($0 == "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3") print "\nThe key fingerprint matches ("$0").\n"; else print "\nVerification failed: the fingerprint ("$0") does not match the expected one.\n"}'
    ```
-1. Next, add the Mozilla APT repository to your sources list:
+1. Next, add the Mozilla APT repository to your sources list [²](https://askubuntu.com/a/1516224):
    ```bash
-   echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" | sudo tee -a /etc/apt/sources.list.d/mozilla.list > /dev/null
+   echo '
+   Types: deb
+   URIs: https://packages.mozilla.org/apt
+   Suites: mozilla
+   Components: main
+   Signed-By: /etc/apt/keyrings/packages.mozilla.org.gpg
+   ' | sudo tee /etc/apt/sources.list.d/mozilla.sources
    ```
 1. Configure APT to prioritize packages from the Mozilla repository:
    ```bash
    echo '
-   Package: *
+   Package: firefox*
    Pin: origin packages.mozilla.org
    Pin-Priority: 1000
    ' | sudo tee /etc/apt/preferences.d/mozilla
+   ```
+1. Remove existing Firefox installations
+   ```
+   sudo snap remove firefox
+   sudo apt remove firefox
    ```
 1. Update your package list and install the Firefox .deb package:
    - Firefox Developer Edition
