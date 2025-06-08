@@ -15,7 +15,7 @@ Setting up Firefox Developer Edition in Ubuntu
    ```
 1. Import the Mozilla APT repository signing key:
    ```bash
-   wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+   wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | gpg --dearmor | sudo tee /etc/apt/keyrings/packages.mozilla.org.gpg > /dev/null
    ```
    If you do not have `wget` installed, you can install it with:
    ```bash
@@ -23,7 +23,7 @@ Setting up Firefox Developer Edition in Ubuntu
    ```
 1. The fingerprint should be `35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3`. You may check it with the following command:
    ```bash
-   gpg -n -q --import --import-options import-show /etc/apt/keyrings/packages.mozilla.org.asc | awk '/pub/{getline; gsub(/^ +| +$/,""); if($0 == "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3") print "\nThe key fingerprint matches ("$0").\n"; else print "\nVerification failed: the fingerprint ("$0") does not match the expected one.\n"}'
+   gpg -n -q --import --import-options import-show /etc/apt/keyrings/packages.mozilla.org.gpg | awk '/pub/{getline; gsub(/^ +| +$/,""); if($0 == "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3") print "\nThe key fingerprint matches ("$0").\n"; else print "\nVerification failed: the fingerprint ("$0") does not match the expected one.\n"}'
    ```
 1. Next, add the Mozilla APT repository to your sources list [²](https://askubuntu.com/a/1516224):
    ```bash
