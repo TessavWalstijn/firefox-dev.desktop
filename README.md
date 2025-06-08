@@ -52,20 +52,20 @@ Setting up Firefox Developer Edition in Ubuntu
    - Firefox Developer Edition
      ```bash
      # Firefox Developer Edition
-     sudo apt-get update && sudo apt-get install firefox-devedition
+     sudo apt update && sudo apt install firefox-devedition
      ```
    - Firefox
      ```bash
      # Firefox
-     sudo apt-get update && sudo apt-get install firefox
+     sudo apt update && sudo apt install firefox
      ```
    - Firefox Beta
      ```bash
      # Firefox Beta (icon is the same as non beta version)
-     sudo apt-get update && sudo apt-get install firefox-beta
+     sudo apt update && sudo apt install firefox-beta
      ```
    - Firefox Nightly
      ```bash
      # Firefox Nightly
-     sudo apt-get update && sudo apt-get install firefox-nightly
+     sudo apt update && sudo apt install firefox-nightly
      ```
